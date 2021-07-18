@@ -602,18 +602,18 @@ static void patch_ctrl_data(SceCtrlData *pad_data, int triggers, int port, int i
 		//R3 L3
 		switch (current_recieved_input[port][15])
 		{
-			case 0x40:
+			case 0x02:
 				buttons |= SCE_CTRL_R3;
 				break;
-			case 0x20:
+			case 0x01:
 				buttons |= SCE_CTRL_L3;
 
 			default:
-				if(current_recieved_input[port][15] & 0x40) 
+				if(current_recieved_input[port][15] & 0x02) 
 				{
 					buttons |= SCE_CTRL_R3;
 				}
-				if(current_recieved_input[port][15] & 0x20) 
+				if(current_recieved_input[port][15] & 0x01) 
 				{
 					buttons |= SCE_CTRL_L3;
 				}
