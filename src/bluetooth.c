@@ -474,7 +474,7 @@ static void patch_ctrl_data(SceCtrlData *pad_data, int triggers, int port, int i
 	int lt = ((current_recieved_input[port][9] + (255 * current_recieved_input[port][10])) / 4);
 	int rt = ((current_recieved_input[port][11] + (255 * current_recieved_input[port][12])) / 4);
 
-	//Xbox button
+	//PS button
 	if(current_recieved_input[port][0] & 0x02) 
 	{
 		if(current_recieved_input[port][1] & 0x01)
@@ -516,10 +516,11 @@ static void patch_ctrl_data(SceCtrlData *pad_data, int triggers, int port, int i
 			case 0x8:
 				buttons |= SCE_CTRL_LEFT;
 				buttons |= SCE_CTRL_UP;
-				break;
+				break;	
+				
 		}
 
-		//RB LB and ABXY. For some reason the buttons aren't or'ed together when pushed separetly which is why we need to do it like this.
+		//X [] triangle and O Select + Start + L1 + R1.
 		switch (current_recieved_input[port][14])
 		{
 			case 0x1:
@@ -528,26 +529,19 @@ static void patch_ctrl_data(SceCtrlData *pad_data, int triggers, int port, int i
 			case 0x2:
 				buttons |= SCE_CTRL_CIRCLE;
 				break;
-			case 0x8:
+			case 0x4:
 				buttons |= SCE_CTRL_SQUARE;
 				break;
-			case 0x10:
+			case 0x8:
 				buttons |= SCE_CTRL_TRIANGLE;
 				break;
-			case 0x80:
-				//RB
-				if(!lt_rt_swap)
-				{
-					if(triggers) buttons |= SCE_CTRL_R1;
-					else buttons |= SCE_CTRL_RTRIGGER;
-				}
-				else
-				{
-					pad_data->rt = 255;
-				}
+						case 0x80:
+				buttons |= SCE_CTRL_START;
 				break;
 			case 0x40:
-				//LB
+				buttons |= SCE_CTRL_SELECT;
+				break;
+			case 0x10: //L1
 				if(!lt_rt_swap)
 				{
 					if(triggers) buttons |= SCE_CTRL_L1;
@@ -558,57 +552,56 @@ static void patch_ctrl_data(SceCtrlData *pad_data, int triggers, int port, int i
 					pad_data->lt = 255;
 				}
 				break;
-			default:
+			case 0x20: //R1
+				if(!lt_rt_swap)
 				{
-					if(current_recieved_input[port][14] & 0x1) buttons |= SCE_CTRL_CROSS;
-					if(current_recieved_input[port][14] & 0x2) buttons |= SCE_CTRL_CIRCLE;
-					if(current_recieved_input[port][14] & 0x8) buttons |= SCE_CTRL_SQUARE;
-					if(current_recieved_input[port][14] & 0x10) buttons |= SCE_CTRL_TRIANGLE;		
-					if(current_recieved_input[port][14] & 0x80)
-					{
-						if(!lt_rt_swap)
-						{
-							if(triggers) buttons |= SCE_CTRL_R1;
-							else buttons |= SCE_CTRL_RTRIGGER;
-						}
-						else
-						{
-							pad_data->rt = 255;
-						}
-					}
-					if(current_recieved_input[port][14] & 0x40) 
-					{
-						if(!lt_rt_swap)
-						{
-							if(triggers) buttons |= SCE_CTRL_L1;
-							else buttons |= SCE_CTRL_LTRIGGER;
-						}
-						else
-						{
-							pad_data->lt = 255;
-						}
-					}
-					break;
+					if(triggers) buttons |= SCE_CTRL_R1;
+					else buttons |= SCE_CTRL_RTRIGGER;
 				}
-		}
-
-		//Start
-		//if(current_recieved_input[port][15] == 0x8) buttons |= SCE_CTRL_START;
-		//Select
-		if(current_recieved_input[port][16] == 0x1) buttons |= SCE_CTRL_SELECT;
-
-		//R3 L3 Start and Xbox button on newer firmwares controllers
-		switch (current_recieved_input[port][15])
-		{
-			case 0x10:
+				else
+				{
+					pad_data->rt = 255;
+				}
+				break;
+			default:
 			{
-				buttons |= SCE_CTRL_PSBUTTON;
-				ksceCtrlSetButtonEmulation(0, 0, 0, SCE_CTRL_PSBUTTON, 8);
+				if(current_recieved_input[port][14] & 0x1) buttons |= SCE_CTRL_CROSS;
+				if(current_recieved_input[port][14] & 0x2) buttons |= SCE_CTRL_CIRCLE;
+				if(current_recieved_input[port][14] & 0x8) buttons |= SCE_CTRL_TRIANGLE;
+				if(current_recieved_input[port][14] & 0x4) buttons |= SCE_CTRL_SQUARE;
+				if(current_recieved_input[port][14] & 0x80) buttons |= SCE_CTRL_START;
+				if(current_recieved_input[port][14] & 0x40) buttons |= SCE_CTRL_SELECT; 
+				if(current_recieved_input[port][14] & 0x10)
+				{
+					if(!lt_rt_swap)
+					{
+						if(triggers) buttons |= SCE_CTRL_R1;
+						else buttons |= SCE_CTRL_RTRIGGER;
+					}
+					else
+					{
+						pad_data->rt = 255;
+					}
+				}
+				if(current_recieved_input[port][14] & 0x20)
+				{
+					if(!lt_rt_swap)
+					{
+						if(triggers) buttons |= SCE_CTRL_R1;
+						else buttons |= SCE_CTRL_RTRIGGER;
+					}
+					else
+					{
+						pad_data->rt = 255;
+					}
+				}	
 				break;
 			}
-			case 0x8:
-				buttons |= SCE_CTRL_START;
-				break;
+		}
+
+		//R3 L3
+		switch (current_recieved_input[port][15])
+		{
 			case 0x40:
 				buttons |= SCE_CTRL_R3;
 				break;
@@ -616,10 +609,6 @@ static void patch_ctrl_data(SceCtrlData *pad_data, int triggers, int port, int i
 				buttons |= SCE_CTRL_L3;
 
 			default:
-				if(current_recieved_input[port][15] & 0x8) 
-				{
-					buttons |= SCE_CTRL_START;
-				}
 				if(current_recieved_input[port][15] & 0x40) 
 				{
 					buttons |= SCE_CTRL_R3;
@@ -627,11 +616,6 @@ static void patch_ctrl_data(SceCtrlData *pad_data, int triggers, int port, int i
 				if(current_recieved_input[port][15] & 0x20) 
 				{
 					buttons |= SCE_CTRL_L3;
-				}
-				if(current_recieved_input[port][15] & 0x10)
-				{
-					buttons |= SCE_CTRL_PSBUTTON;
-					ksceCtrlSetButtonEmulation(0, 0, 0, SCE_CTRL_PSBUTTON, 8);
 				}
 				break;
 		}
