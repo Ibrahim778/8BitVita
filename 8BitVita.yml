@@ -1,4 +1,4 @@
-X1Vita:
+8BitVita:
   attributes: 0
   version:
     major: 1
@@ -7,7 +7,7 @@ X1Vita:
     start: module_start
     stop: module_stop
   modules:
-    X1VitaDebug:
+    8BitVitaDebug:
       syscall: true
       functions:
         - GetPidVid
