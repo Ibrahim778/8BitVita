@@ -27,10 +27,8 @@ Compatible 8bitdo controllers: Lite, Pro+, Pro 2, & Zero 2.
 **Using it once paired (see above):**
 1. Just turn on the controller in x-input mode and it will connect to the Vita.
 
-**Note**: If you are using multiple controllers the controller ports will be set in the order you connect (if available), so first connection -> port 1 second connection -> port 2 etc, simply powering off the controller will not trigger a disconnect on vita. Typically you need to hold the ```Start``` button till it turns off.  
+**Note**: This plugin is compatible with minivitaTV ;) If you are using multiple controllers the controller ports will be set in the order you connect (if available), so first connection -> port 1 second connection -> port 2 etc.
   
-This plugin is compatible with minivitaTV ;)
-
 
 Credit goes to M Ibrahim.
 Thanks to ShadowKnight1620 for testing. 
