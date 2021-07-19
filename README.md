@@ -2,7 +2,7 @@
 
 Basically just X1Vita but with 8bitdo pro 2 vid, pid, & mappings. 
 
-**Compatible 8bitdo controllers**: Lite, Pro+, Pro 2, & Zero 2.
+**Compatible 8bitdo controllers**: Lite, Pro, Pro+, Pro 2, & Zero 2.
 
 
 **Download**: https://github.com/shadowknight1620/8BitVita/releases
@@ -21,7 +21,7 @@ Basically just X1Vita but with 8bitdo pro 2 vid, pid, & mappings.
 
 1. Go to Settings -> Devices -> Bluetooth Devices
 2. Turn on the controller in x-input mode, typically ```Start + X``` on most 8bitdo models (Except the Lite and Pro 2).
-3. Put the controller into pairing mode by holding the ```Select``` button on most 8bitdo models (Unless it has a dedicated pairing button like the Lite, Pro+, and Pro 2), the led will blink rapidly or a pattern will begin flashing on the led's.
+3. Put the controller into pairing mode by holding the ```Select``` button on most 8bitdo models (Unless it has a dedicated pairing button like the Lite, Pro, Pro+, and Pro 2), the led will blink rapidly or a pattern will begin flashing on the led's.
 4. Select the controller name in the bluetooth devices list, the controller will then connect and be paired (You may get a message saying "Do you want to connect?" press ok).
 
 **Using it once paired (see above):**
