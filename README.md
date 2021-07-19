@@ -1,6 +1,6 @@
 # 8BitVita
 
-Basically just X1Vita but with 8bitdo pro 2 vid, pid, & mappings. 
+Basically just X1Vita but with 8bitdo vid, pid, & mappings.
 
 **Compatible 8bitdo controllers**: Lite, Pro, Pro+, Pro 2, & Zero 2.
 
