@@ -575,12 +575,12 @@ static void patch_ctrl_data(SceCtrlData *pad_data, int triggers, int port, int i
 				{
 					if(!lt_rt_swap)
 					{
-						if(triggers) buttons |= SCE_CTRL_R1;
-						else buttons |= SCE_CTRL_RTRIGGER;
+						if(triggers) buttons |= SCE_CTRL_L1;
+						else buttons |= SCE_CTRL_LTRIGGER;
 					}
 					else
 					{
-						pad_data->rt = 255;
+						pad_data->lt = 255;
 					}
 				}
 				if(current_recieved_input[port][14] & 0x20)
