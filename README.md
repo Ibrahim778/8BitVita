@@ -2,7 +2,7 @@
 
 Basically just X1Vita but with 8bitdo pro 2 vid, pid, & mappings. 
 
-Compatible 8bitdo controllers: Lite, Pro+, Pro 2, & Zero 2.
+**Compatible 8bitdo controllers**: Lite, Pro+, Pro 2, & Zero 2.
 
 
 **Download**: https://github.com/shadowknight1620/8BitVita/releases
