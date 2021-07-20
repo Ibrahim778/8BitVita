@@ -68,3 +68,8 @@ target_link_libraries(8BitVitaCompanion
 
 vita_create_self(8BitVitaCompanion.self 8BitVitaCompanion UNSAFE)
 vita_create_self(${PROJECT_NAME}.skprx ${PROJECT_NAME} CONFIG ${PROJECT_NAME}.yml UNSAFE)
+
+vita_create_vpk("8BitVitaCompanion.vpk" "DEBG00002" "8BitVitaCompanion.self"
+    VERSION "01.00"
+    NAME "8BitVita Companion"
+)
