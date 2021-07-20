@@ -19,7 +19,6 @@ add_executable(${PROJECT_NAME}
   src/bluetooth.c
 )
 
-
 set_target_properties(${PROJECT_NAME}
 	PROPERTIES LINK_FLAGS "-nostdlib"
 	COMPILE_FLAGS "-D__VITA_KERNEL__"
@@ -45,4 +44,27 @@ target_link_libraries(${PROJECT_NAME}
   SceProcessmgrForDriver_stub
 )
 
+vita_create_stubs(stubs ${PROJECT_NAME} ${PROJECT_NAME}.yml KERNEL)
+
+add_executable(8BitVitaCompanion
+  src/debug.c
+)
+
+target_link_libraries(8BitVitaCompanion
+  SceCtrl_stub
+  ${CMAKE_SOURCE_DIR}/build/stubs/lib8BitVita_stub_weak.a
+  vita2d
+  SceShellSvc_stub
+  SceDisplay_stub
+  SceGxm_stub
+  ScePgf_stub
+  ScePvf_stub
+  SceSysmodule_stub
+  SceVshBridge_stub
+  SceAppMgr_stub 
+  m
+  SceCommonDialog_stub
+)
+
+vita_create_self(8BitVitaCompanion.self 8BitVitaCompanion UNSAFE)
 vita_create_self(${PROJECT_NAME}.skprx ${PROJECT_NAME} CONFIG ${PROJECT_NAME}.yml UNSAFE)

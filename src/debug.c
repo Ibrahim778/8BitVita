@@ -120,7 +120,7 @@ void DebugScreen()
 void PrintSelection(int selection)
 {
     int printY = StartY;
-    vita2d_pgf_draw_text(pgf, 0, printY, TextColour, 1.0f, "Thank you for using X1Vita! Press Start to exit");
+    vita2d_pgf_draw_text(pgf, 0, printY, TextColour, 1.0f, "Thank you for using 8BitVita! Press Start to exit");
     printY += StartY + 10;
     for (int i = 0; i < MaxSelections; i++)
     {
@@ -139,7 +139,7 @@ void WarningScreen()
     {
         vita2d_start_drawing();
         vita2d_clear_screen();
-        vita2d_pgf_draw_text(pgf, (960/2) - 100, (544/2)-10, RGBA8(0,255,0,255), 1.0f, "Error X1Vita not found!");
+        vita2d_pgf_draw_text(pgf, (960/2) - 100, (544/2)-10, RGBA8(0,255,0,255), 1.0f, "Error 8BitVita not found!");
         vita2d_end_drawing();
         vita2d_swap_buffers();
     }
@@ -189,7 +189,7 @@ int main()
     sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN_2);
 
     SceUInt64 searchBuff = 0;
-    moduleLoaded = (_vshKernelSearchModuleByName("X1Vita", &searchBuff) >= 0);
+    moduleLoaded = (_vshKernelSearchModuleByName("8BitVita", &searchBuff) >= 0);
 
     vita2d_init();
     vita2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));

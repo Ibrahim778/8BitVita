@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#define ConfigPath "ux0:data/X1Vita/swapltrt"
+#define ConfigPath "ux0:data/8BitVita/swapltrt"
 int SetSwapStatus(int *status);
 int GetSwapStatus();
 int GetPidVid(int *vid, int *pid);
