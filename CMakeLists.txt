@@ -29,19 +29,14 @@ target_link_libraries(${PROJECT_NAME}
   taihenForKernel_stub
   SceSysclibForDriver_stub
   SceSysmemForDriver_stub
-  SceSysmemForKernel_stub
   SceThreadmgrForDriver_stub
   SceIofilemgrForDriver_stub
   taihenModuleUtils_stub
   SceBtForDriver_stub
-  SceDebugForDriver_stub
-  SceModulemgrForDriver_stub 
+  SceDebugForDriver_stub 
   SceKernelSuspendForDriver_stub
-  SceModulemgrForKernel_stub 
   SceCtrlForDriver_stub
   SceSblAIMgrForDriver_stub
-  SceSysrootForDriver_stub 
-  SceProcessmgrForDriver_stub
 )
 
 vita_create_stubs(stubs ${PROJECT_NAME} ${PROJECT_NAME}.yml KERNEL)
