@@ -28,12 +28,12 @@ void drawBuff()
     int currentY = 20;
     if(!moduleLoaded)
     {
-        vita2d_pgf_draw_text(pgf, (960/2) - 100, (544/2)-10, RGBA8(0,255,0,255), 1.0f, "Error X1Vita not found!");
+        vita2d_pgf_draw_text(pgf, (960/2) - 100, (544/2)-10, RGBA8(0,255,0,255), 1.0f, "Error 8BitVita not found!");
         return;
     }
     else
     {
-        vita2d_pgf_draw_text(pgf, 960 - 150, currentY, RGBA8(0,255,0,255), 1.0f, "X1Vita Found!");
+        vita2d_pgf_draw_text(pgf, 960 - 150, currentY, RGBA8(0,255,0,255), 1.0f, "8BitVita Found!");
     }
     int swapStatus = GetSwapStatus();
     char buff[0x12];
