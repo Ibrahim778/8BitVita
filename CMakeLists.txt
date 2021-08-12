@@ -67,4 +67,5 @@ vita_create_self(${PROJECT_NAME}.skprx ${PROJECT_NAME} CONFIG ${PROJECT_NAME}.ym
 vita_create_vpk("8BitVitaCompanion.vpk" "DEBG00002" "8BitVitaCompanion.self"
     VERSION "01.00"
     NAME "8BitVita Companion"
+    FILE sce_sys sce_sys
 )
